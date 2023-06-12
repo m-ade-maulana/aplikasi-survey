@@ -140,6 +140,7 @@ class Welcome extends CI_Controller
 				'quest' => $quest,
 				'answer' => $answer,
 			];
+			$this->session->set_flashdata('message', $this->message('success', 'Terima kasih sudah mengisi survey kami'));
 			redirect('welcome');
 		} elseif ($this->input->post('select_2')) {
 			$answer = $this->input->post('select_2');
@@ -147,6 +148,7 @@ class Welcome extends CI_Controller
 				'quest' => $quest,
 				'answer' => $answer,
 			];
+			$this->session->set_flashdata('message', $this->message('success', 'Terima kasih sudah mengisi survey kami'));
 			redirect('welcome');
 		} elseif ($this->input->post('select_3')) {
 			$answer = $this->input->post('select_3');
@@ -154,6 +156,7 @@ class Welcome extends CI_Controller
 				'quest' => $quest,
 				'answer' => $answer,
 			];
+			$this->session->set_flashdata('message', $this->message('success', 'Terima kasih sudah mengisi survey kami'));
 			redirect('welcome');
 		} elseif ($this->input->post('select_4')) {
 			$answer = $this->input->post('select_4');
@@ -161,7 +164,32 @@ class Welcome extends CI_Controller
 				'quest' => $quest,
 				'answer' => $answer,
 			];
+			$this->session->set_flashdata('message', $this->message('success', 'Terima kasih sudah mengisi survey kami'));
 			redirect('welcome');
 		}
+	}
+
+	public function message($type, $title)
+	{
+		$message_alert = "
+    		const Toast = Swal.mixin({
+    			toast: true,
+    			position: 'top-end',
+    			showConfirmButton: false,
+                showClass: {
+                    popup: 'animate__animated animate__bounceInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__bounceOutDown'
+                },
+    			timer: 2000
+    		});
+
+    		Toast.fire({
+    			icon: '" . $type . "',
+    			title: '" . $title . "',
+    		});
+    		";
+		return $message_alert;
 	}
 }
